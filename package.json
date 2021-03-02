@@ -1,0 +1,23 @@
+{
+  "name": "GenerateTeamRoster",
+  "version": "1.0.0",
+  "description": "Managers Log of Team",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adams1971/GenerateTeamRoster.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adams1971/GenerateTeamRoster/issues"
+  },
+  "homepage": "https://github.com/adams1971/GenerateTeamRoster#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}

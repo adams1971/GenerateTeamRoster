@@ -1,12 +1,13 @@
 const inquirer = require("inquirer");
-const Manager = require("./lib/manager");
 const fs = require("fs");
+const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const employeeArray = [];
 //I enter the team manager’s name, employee ID, email address, and office number
 //I am presented with a menu with the option to add an engineer or an intern or to finish building my team
-//TODO create and array of questions
+
+//TODO create and array of questions for mananger
 const managerInfo = () =>
   inquirer.prompt([
     {
@@ -37,7 +38,7 @@ const managerInfo = () =>
       type: "list",
       name: "role",
       message: "Would you like to add another team member?",
-      choices: ["manager", "Engineer", "Intern", "Done"],
+      choices: ["Manager", "Engineer", "Intern", "No, I'm Finished"],
     },
   ]);
 
@@ -51,6 +52,8 @@ const managerInfo = () =>
 //     },
 //   ]);
 //   THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
+
+//TODO create and array of questions for engineer
 const engineerInfo = () =>
   inquirer.prompt([
     {
@@ -81,11 +84,12 @@ const engineerInfo = () =>
       type: "list",
       name: "role",
       message: "Would you like to add another team member?",
-      choices: ["manager", "Engineer", "Intern", "Done"],
+      choices: ["Manager", "Engineer", "Intern", "No, I'm Finished"],
     },
   ]);
 
-const internInfo = () =>
+//TODO create and array of questions for intern
+  const internInfo = () =>
   inquirer.prompt([
     {
       type: "input",
@@ -115,7 +119,7 @@ const internInfo = () =>
       type: "list",
       name: "role",
       message: "Would you like to add another team member?",
-      choices: ["manager", "Engineer", "Intern", "Done"],
+      choices: ["Manager", "Engineer", "Intern", "No, I'm Finished"],
     },
   ]);
 
@@ -143,7 +147,7 @@ function manager() {
       else if(answers.role === "No, I'm Finished") {
         HTMLTemplate(ManagerTemplate(employeeArray), EngineerTemplate(employeeArray), InternTemplate(employeeArray))
       }
-  })
+    })
 }
 
   // .then(() => {
@@ -154,8 +158,9 @@ function manager() {
   //       if (answers[0] === "Engineer") {
           //do somethinhg
   
-  function engineer() {
-    engineerInfo().then((answers) => {
+function engineer() {
+  engineerInfo()
+    .then((answers) => {
       const engineer = new Engineer(
         answers.engineerName,
         answers.engineerID,
@@ -174,11 +179,15 @@ function manager() {
       }
       else if(answers.role === "No, I'm Finished") {
         HTMLTemplate(ManagerTemplate(employeeArray), EngineerTemplate(employeeArray), InternTemplate(employeeArray))
-    };
+      }
+    })
+}
 
     // } else if (answers[0] === "Intern") {
-    //do something 
-    internInfo().then((answers) => {
+    //do something
+function intern() { 
+  internInfo()
+    .then((answers) => {
       const intern = new Intern(
         answers.internName,
         answers.internID,
@@ -197,8 +206,9 @@ function manager() {
       }
       else if(answers.role === "No, I'm Finished") {
         HTMLTemplate(ManagerTemplate(employeeArray), EngineerTemplate(employeeArray), InternTemplate(employeeArray))
-    }
-  }
+      }
+    })
+}
         // } else {
         // }
         //finish

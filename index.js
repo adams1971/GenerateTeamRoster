@@ -1,16 +1,18 @@
 const inquirer = require("inquirer");
 const Manager = require("./lib/manager");
 const fs = require("fs");
-const employeeArray =[]
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+const employeeArray = [];
 //I enter the team manager’s name, employee ID, email address, and office number
 //I am presented with a menu with the option to add an engineer or an intern or to finish building my team
 //TODO create and array of questions
 const managerInfo = () =>
-inquirer.prompt([
+  inquirer.prompt([
     {
       type: "input",
       name: "managerName",
-      message: "Please enter the managers name", 
+      message: "Please enter the managers name",
     },
 
     {
@@ -31,25 +33,30 @@ inquirer.prompt([
       message: "What is the office phone number?",
     },
 
-  ]);
-
-  const teamSelection = () =>
-inquirer.prompt([
     {
-      type: "checkbox",
-      name: "menuOption",
-      message: "Select Team Member ",
-      choices: ["Engineer", "Intern", "Finish Building Team"] 
+      type: "list",
+      name: "role",
+      message: "Would you like to add another team member?",
+      choices: ["manager", "Engineer", "Intern", "Done"],
     },
-
   ]);
+
+// const teamSelection = () =>
+//   inquirer.prompt([
+//     {
+//       type: "checkbox",
+//       name: "menuOption",
+//       message: "Select Team Member ",
+//       choices: ["Engineer", "Intern", "Finish Building Team"],
+//     },
+//   ]);
 //   THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
-  const engineerInfo = () =>
-    inquirer.prompt([
+const engineerInfo = () =>
+  inquirer.prompt([
     {
       type: "input",
       name: "engineerName",
-      message: "Please enter the engineers name", 
+      message: "Please enter the engineers name",
     },
 
     {
@@ -70,14 +77,20 @@ inquirer.prompt([
       message: "What is your github userNmane?",
     },
 
+    {
+      type: "list",
+      name: "role",
+      message: "Would you like to add another team member?",
+      choices: ["manager", "Engineer", "Intern", "Done"],
+    },
   ]);
 
-  const internInfo = () =>
-    inquirer.prompt([
+const internInfo = () =>
+  inquirer.prompt([
     {
       type: "input",
       name: "managerName",
-      message: "Please enter the managers name", 
+      message: "Please enter the managers name",
     },
 
     {
@@ -98,38 +111,99 @@ inquirer.prompt([
       message: "What is the office phone number?",
     },
 
+    {
+      type: "list",
+      name: "role",
+      message: "Would you like to add another team member?",
+      choices: ["manager", "Engineer", "Intern", "Done"],
+    },
   ]);
-  //I am presented with a menu with the option to add an engineer or an intern or to finish building my team
 
-managerInfo()
-  .then(answers => {
-    const manager= new Manager(answers.managerName, answers.managerID, answers.emailAddress, answers.officeNumber);
-    console.log(manager.getRole());
-    employeeArray.push(manager)
-  }).then(() =>{
-      
-  //creating engineer 
-  teamSelection()
-    .then(answers => answers)
-    .then(answers => {
-        if(answers[0] === "Engineer") {
-            //do somethinhg
-            engineerInfo().then(answers => {
-                const engineer= new Engineer (answers.engineerName, answers.engineerID, answers.engineerEmailAddress, answers.engineerGitHub)
-                employeeArray.push(engineer)
-            })
-        }
-        else if (answers[0] === "Intern") {
-             //do something to do the same thing as engineer but intern
-        }
-        else {}
-            //finish
-    })
-})
+//I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+function manager() {
+  managerInfo()
+    .then((answers) => {
+      const manager = new Manager(
+        answers.managerName,
+        answers.managerID,
+        answers.emailAddress,
+        answers.officeNumber
+      );
+      console.log(manager.getRole());
+      employeeArray.push(manager);
+      if(answers.role === "Intern") {
+        intern();
+      }
+      else if(answers.role === "Manager") {
+        manager();
+      }
+      else if(answers.role === "Engineer") {
+        engineer();
+      }
+      else if(answers.role === "No, I'm Finished") {
+        HTMLTemplate(ManagerTemplate(employeeArray), EngineerTemplate(employeeArray), InternTemplate(employeeArray))
+      }
+  })
+}
 
+  // .then(() => {
+  //   //creating engineer
+  //   teamSelection()
+  //     .then((answers) => answers)
+  //     .then((answers) => {
+  //       if (answers[0] === "Engineer") {
+          //do somethinhg
+  
+  function engineer() {
+    engineerInfo().then((answers) => {
+      const engineer = new Engineer(
+        answers.engineerName,
+        answers.engineerID,
+        answers.engineerEmailAddress,
+        answers.engineerGitHub
+      );
+      employeeArray.push(engineer);
+      if(answers.role === "Intern") {
+        internInfo();
+      }
+      else if(answers.role === "Manager") {
+        managerInfo();
+      }
+      else if(answers.role === "Engineer") {
+        engineerInfo();
+      }
+      else if(answers.role === "No, I'm Finished") {
+        HTMLTemplate(ManagerTemplate(employeeArray), EngineerTemplate(employeeArray), InternTemplate(employeeArray))
+    };
 
-    
-    // WHEN I select the intern option
-    // THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
-    // WHEN I decide to finish building my team
-    // THEN I exit the application, and the HTML is generated
+    // } else if (answers[0] === "Intern") {
+    //do something 
+    internInfo().then((answers) => {
+      const intern = new Intern(
+        answers.internName,
+        answers.internID,
+        answers.engineerEmailAddress,
+        answers.internGetSchool
+      );
+      employeeArray.push(intern);
+      if(answers.role === "Intern") {
+        internInfo();
+      }
+      else if(answers.role === "Manager") {
+        managerInfo();
+      }
+      else if(answers.role === "Engineer") {
+        engineerInfo();
+      }
+      else if(answers.role === "No, I'm Finished") {
+        HTMLTemplate(ManagerTemplate(employeeArray), EngineerTemplate(employeeArray), InternTemplate(employeeArray))
+    }
+  }
+        // } else {
+        // }
+        //finish
+
+// WHEN I select the intern option
+// THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
+// WHEN I decide to finish building my team
+// THEN I exit the application, and the HTML is generated

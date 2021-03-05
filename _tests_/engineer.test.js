@@ -1,7 +1,7 @@
 const Engineer = require('../lib/engineer');
 
 describe('Engineer', () => {
-    it ('should return the corret name wiht the get method getName is run', () => {
+    it ('should return the correct name wiht the get method getName is run', () => {
         
         const name = 'John Doe';
         const engineer = new Engineer('John Doe', 1, 'johndow@nowheremail.com');
@@ -10,7 +10,7 @@ describe('Engineer', () => {
         expect(engineer.getName()).toEqual(name);
     });
 
-    it ('should return the corret ID when i use the getID method', () => {
+    it ('should return the correct ID when i use the getID method', () => {
         
         const id = 1;
         const engineer = new Engineer('John Doe', 1, 'johndow@nowheremail.com');
@@ -19,7 +19,7 @@ describe('Engineer', () => {
         expect(engineer.getId()).toEqual(id);
     });
 
-    it ('should return the corret email when I use the getEmail method', () => {
+    it ('should return the correct email when I use the getEmail method', () => {
         
     const email = 'johndow@nowheremail.com';
     const engineer = new Engineer('John Doe', 1, 'johndow@nowheremail.com');
@@ -28,7 +28,7 @@ describe('Engineer', () => {
     expect(engineer.getEmail()).toEqual(email);
     });
 
-    it ('should return the corret role when I use the getRole method', () => {
+    it ('should return the correct role when I use the getRole method', () => {
             
         const role = 'Engineer';
         const engineer = new Engineer('John Doe', 1, 'johndow@nowheremail.com');
@@ -37,7 +37,7 @@ describe('Engineer', () => {
         expect(engineer.getRole()).toEqual(role);
     });
 
-    it ('should return the corret github username when I use the gitHub method', () => {
+    it ('should return the correct github username when I use the gitHub method', () => {
             
         const gitHub= 'johndoedoe';
         const engineer = new Engineer('John Doe', 1, 'johndow@nowheremail.com', 'johndoedoe');

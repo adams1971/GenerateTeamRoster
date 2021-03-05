@@ -4,10 +4,10 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const employeeArray = [];
-//I enter the team manager’s name, employee ID, email address, and office number
-//I am presented with a menu with the option to add an engineer or an intern or to finish building my team
 
-//TODO create and array of questions for mananger
+//I enter the team manager’s name, employee ID, email address, and office number
+
+//TODO create an array of questions for manager
 const managerInfo = () =>
   inquirer.prompt([
     {
@@ -25,7 +25,7 @@ const managerInfo = () =>
     {
       type: "input",
       name: "emailAddress",
-      message: "What is the managers email addres?",
+      message: "What is the managers email address?",
     },
 
     {
@@ -53,7 +53,7 @@ const managerInfo = () =>
 //   ]);
 //   THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
 
-//TODO create and array of questions for engineer
+//TODO create an array of questions for engineer
 const engineerInfo = () =>
   inquirer.prompt([
     {
@@ -71,13 +71,13 @@ const engineerInfo = () =>
     {
       type: "input",
       name: "engineerEmailAddress",
-      message: "What is the engineers email addres?",
+      message: "What is the engineers email address?",
     },
 
     {
       type: "input",
       name: "engineerGitHub",
-      message: "What is your github userNmane?",
+      message: "What is your github userName?",
     },
 
     {
@@ -88,7 +88,7 @@ const engineerInfo = () =>
     },
   ]);
 
-//TODO create and array of questions for intern
+//TODO create an array of questions for intern
   const internInfo = () =>
   inquirer.prompt([
     {
@@ -106,7 +106,7 @@ const engineerInfo = () =>
     {
       type: "input",
       name: "emailAddress",
-      message: "What is the managers email addres?",
+      message: "What is the managers email address?",
     },
 
     {
@@ -123,7 +123,7 @@ const engineerInfo = () =>
     },
   ]);
 
-//I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+//add menu with the option to add an engineer or an intern or to finish building my team
 function manager() {
   managerInfo()
     .then((answers) => {
@@ -156,7 +156,7 @@ function manager() {
   //     .then((answers) => answers)
   //     .then((answers) => {
   //       if (answers[0] === "Engineer") {
-          //do somethinhg
+          //do something
   
 function engineer() {
   engineerInfo()
@@ -209,8 +209,6 @@ function intern() {
       }
     })
 }
-        // } else {
-        // }
         //finish
 
 // WHEN I select the intern option

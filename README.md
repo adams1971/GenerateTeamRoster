@@ -61,3 +61,8 @@ The application will be invoked by using the following command:
 ```bash
 node index.js
 ```
+
+## To run demo in terminal
+```md 
+npm run test
+```

@@ -9,7 +9,7 @@ Testing is the main focus for me with this project.
 
 Because this application is not deployed, I have provide a link with a walkthrough video that demonstrates the tests passing.
 ## Video Demo Link
-[...](...)
+[https://drive.google.com/file/d/1k1PQ1DUqGOgiat4kzkEw1SLdinXKOIp2/view?usp=sharing](https://drive.google.com/file/d/1k1PQ1DUqGOgiat4kzkEw1SLdinXKOIp2/view?usp=sharing)
 
 ## User Story
 
